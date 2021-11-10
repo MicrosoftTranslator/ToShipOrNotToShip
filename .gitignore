@@ -1,0 +1,6 @@
+.DS_Store
+results
+__pycache__
+*.pyc
+*.pickle
+

@@ -1,0 +1,7 @@
+pandas
+scipy
+numpy==1.18.0
+python-Levenshtein
+scikit-learn==0.22.2
+matplotlib
+openpyxl
