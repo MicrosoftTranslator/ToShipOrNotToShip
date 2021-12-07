@@ -79,6 +79,21 @@ def compute_statistics_for_eval(data, bootstrap=None):
 
                 value_a = data[campaign][systempair[0]]['automatic_metrics'][metric]
                 value_b = data[campaign][systempair[1]]['automatic_metrics'][metric]
+                # It may be confusing, why human score differences are sometimes calculated over a smaller set of sentences than automatic metric
+                # This is due to the standard practice in MT, where human evaluation is run over a subset of sentences. 
+                # Automatic metric could be also evaluated only on the equal set of sentences, but that would hurt their performance.
+                # However, we got comparable results even when we restricted automatic metrics to sentences evaluated by humans.
+                # Whenever a subset of sentences was used, the XLSX file contains 4 sheets:
+                # hum_annotations: contains all sentences evaluated by humans and metrics
+                # hum_only_automatic_metrics: contains system-level metric scores over sentences evaluated by humans
+                # full_testset: contains all sentences evaluated by metrics (a subset of hum_annotations)
+                # automatic_metrics: contain system-level metric scores over all sentences
+                # If you are interested in scenario where metrics are compared only on the sentences evaluated by humans, uncomment the following code:
+                #
+                # if "hum_only_automatic_metrics" in data[campaign][systempair[0]]:                
+                #     value_a = data[campaign][systempair[0]]['hum_only_automatic_metrics'][metric]
+                #     value_b = data[campaign][systempair[1]]['hum_only_automatic_metrics'][metric]
+
                 processed_data[metric] = value_a - value_b
 
                 if bootstrap:

@@ -87,11 +87,11 @@ def load_data(use_cache=True):
                 for system in systems_list:
                     if system not in data[campaign]:
                         data[campaign][system] = defaultdict(dict)
-                    print(f"Loading {counter}/{len(systems_list)}")
+                    print(f"Loading {counter}/{len(campaigns_list)} campaign")
                     xls = pd.ExcelFile(f"public_release/{campaign}/{system}")
                     for datatype in xls.sheet_names:
                         if datatype in ["hum_annotations",
-                                        "hum_only_automatic_metrics"]:
+                                        "full_test"]:
                             data[campaign][system][datatype] = pd.read_excel(
                                 xls, datatype)
                         else:
@@ -100,7 +100,7 @@ def load_data(use_cache=True):
                             df_dict = df.set_index("Unnamed: 0").transpose()
                             df_dict = df_dict.iloc[0].to_dict()
                             data[campaign][system][datatype] = df_dict
-                    counter += 1
+                counter += 1
 
         # save the cache data
         if use_cache:
