@@ -1,6 +1,6 @@
 # To Ship or Not to Ship: An Extensive Evaluation of Automatic Metrics for Machine Translation
 
-This repo contains human judgment data and code for the [paper](http://statmt.org/wmt21/pdf/2021.wmt-1.57.pdf]):
+This repo contains human judgment data and code for the [paper](http://statmt.org/wmt21/pdf/2021.wmt-1.57.pdf):
 
     To Ship or Not to Ship: An Extensive Evaluation of Automatic Metrics for Machine Translation
 
